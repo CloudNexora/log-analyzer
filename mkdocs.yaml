@@ -1,0 +1,11 @@
+site_name: 'Log Analyzer'
+site_description: 'Main documentation for Log Analyzer documentation'
+repo_url: https://github.com/CloudNexora/log-analyzer
+edit_uri: edit/main/docs
+
+plugins:
+  - techdocs-core
+
+nav:
+  - Overview:
+      - Getting Started: 'docs/index.md'
