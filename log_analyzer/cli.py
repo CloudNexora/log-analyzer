@@ -6,6 +6,8 @@ Usage examples::
     log-analyzer analyze sample_logs/jenkins_build.log
     log-analyzer analyze sample_logs/ --source auto --format all --output reports/
     log-analyzer analyze app.log --source docker --format html --output ./report.html
+    log-analyzer serve
+    log-analyzer serve --host 0.0.0.0 --port 8080
     log-analyzer list-sources
     log-analyzer list-formats
 """
@@ -252,6 +254,56 @@ def _print_written_files(paths) -> None:
     console.print("[bold green]✅ Reports written:[/bold green]")
     for p in paths:
         console.print(f"   [link=file://{p}]{p}[/link]")
+
+
+# ---------------------------------------------------------------------------
+# serve command
+# ---------------------------------------------------------------------------
+
+@main.command()
+@click.option("--host", default="0.0.0.0", show_default=True, help="Bind host.")
+@click.option("--port", default=8000, show_default=True, help="Bind port.")
+@click.option("--reload", is_flag=True, help="Enable auto-reload (development mode).")
+def serve(host: str, port: int, reload: bool):
+    """
+    Start the HTTP API server.
+
+    \b
+    Endpoints available at http://<host>:<port>:
+      POST /analyze                  — Upload a log file and get issues
+      GET  /reports                  — List all past reports
+      GET  /reports/{id}             — Get a specific report as JSON
+      GET  /reports/{id}/download    — Download as html / markdown / json
+      GET  /sources                  — List available log parsers
+      GET  /formats                  — List available output formats
+      GET  /health                   — Health check
+      GET  /docs                     — Interactive Swagger UI
+    """
+    try:
+        import uvicorn
+    except ImportError:
+        console.print(
+            "[bold red]Error:[/bold red] uvicorn is not installed.\n"
+            "Run: [bold]pip install uvicorn[standard][/bold]"
+        )
+        raise SystemExit(1)
+
+    console.print(
+        Panel.fit(
+            f"[bold cyan]Log Analyzer API[/bold cyan] [dim]v1.0.0[/dim]\n"
+            f"[dim]Listening on[/dim] [bold]http://{host}:{port}[/bold]\n"
+            f"[dim]Swagger UI →[/dim] [link=http://{host}:{port}/docs]http://{host}:{port}/docs[/link]",
+            border_style="cyan",
+        )
+    )
+
+    uvicorn.run(
+        "log_analyzer.api.app:app",
+        host=host,
+        port=port,
+        reload=reload,
+        log_level="info",
+    )
 
 
 if __name__ == "__main__":
