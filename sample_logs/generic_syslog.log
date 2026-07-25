@@ -1,0 +1,35 @@
+Jan 15 10:22:00 webserver01 nginx: Starting nginx web server
+Jan 15 10:22:01 webserver01 nginx: Configuration test passed
+Jan 15 10:22:05 webserver01 sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Jan 15 10:22:06 webserver01 sshd[1235]: authentication failed for user root
+Jan 15 10:22:10 webserver01 myapp[5678]: INFO Starting application v3.2.1
+Jan 15 10:22:11 webserver01 myapp[5678]: INFO Database connection pool initialized (size=10)
+Jan 15 10:22:15 webserver01 myapp[5678]: WARNING Slow query detected: SELECT * FROM orders WHERE status='pending' took 3500ms > threshold
+Jan 15 10:22:16 webserver01 myapp[5678]: WARNING query took 2100ms — consider adding an index on orders.status
+Jan 15 10:22:20 webserver01 myapp[5678]: ERROR connection refused: dial tcp 10.0.0.10:5432: connect: connection refused
+Jan 15 10:22:21 webserver01 myapp[5678]: ERROR database connection failed: could not connect to server
+Jan 15 10:22:22 webserver01 myapp[5678]: ERROR Traceback (most recent call last):
+Jan 15 10:22:22 webserver01 myapp[5678]: ERROR   File "/app/db.py", line 88, in connect
+Jan 15 10:22:22 webserver01 myapp[5678]: ERROR     conn = psycopg2.connect(**db_params)
+Jan 15 10:22:22 webserver01 myapp[5678]: ERROR psycopg2.OperationalError: could not connect to server: Connection refused
+Jan 15 10:22:25 webserver01 kernel: Out of memory: Kill process 5678 (myapp) score 850 or sacrifice child
+Jan 15 10:22:25 webserver01 kernel: OutOfMemoryError: Java heap space — process killed
+Jan 15 10:22:26 webserver01 systemd[1]: myapp.service: Main process exited, code=killed, status=9/KILL
+Jan 15 10:22:27 webserver01 systemd[1]: myapp.service: Failed with result 'signal'.
+Jan 15 10:22:30 webserver01 myapp[5700]: INFO Application restarted
+Jan 15 10:22:31 webserver01 myapp[5700]: WARNING DeprecationWarning: use of 'require_all' is deprecated, use 'require' instead
+Jan 15 10:22:35 webserver01 myapp[5700]: ERROR SSL handshake failed: SSL: error:14090086:SSL routines:ssl3_get_server_certificate:certificate verify failed
+Jan 15 10:22:36 webserver01 myapp[5700]: ERROR permission denied: cannot read /etc/ssl/private/server.key
+Jan 15 10:22:40 webserver01 myapp[5700]: WARNING certificate will expire in 14 days: /etc/ssl/certs/webapp.pem
+Jan 15 10:22:45 webserver01 myapp[5700]: ERROR request timed out after 30000ms — ETIMEDOUT
+Jan 15 10:22:46 webserver01 myapp[5700]: WARNING Retrying request after timeout: attempt 1 of 3
+Jan 15 10:22:50 webserver01 myapp[5700]: INFO request elapsed=1850ms path=/api/orders
+Jan 15 10:22:51 webserver01 myapp[5700]: INFO response latency=2100ms endpoint=/api/reports
+Jan 15 10:22:52 webserver01 myapp[5700]: INFO duration=3200ms query=SELECT_orders
+Jan 15 10:22:55 webserver01 myapp[5700]: CRITICAL segmentation fault (core dumped) — process 5700
+Jan 15 10:23:00 webserver01 cron[9999]: INFO Backup job started
+Jan 15 10:23:01 webserver01 cron[9999]: ERROR no space left on device: cannot write backup to /backup/data.tar.gz
+Jan 15 10:23:05 webserver01 myapp[5800]: ERROR GC overhead limit exceeded — forcing full GC
+Jan 15 10:23:06 webserver01 myapp[5800]: ERROR connection pool exhausted: max connections (100) reached
+Jan 15 10:23:10 webserver01 myapp[5800]: ERROR thread pool exhausted: executor rejected task
+Jan 15 10:23:15 webserver01 kernel: INFO System running normally

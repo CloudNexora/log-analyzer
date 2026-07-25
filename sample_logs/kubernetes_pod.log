@@ -1,0 +1,31 @@
+LAST SEEN   TYPE      REASON              OBJECT                     MESSAGE
+0s          Warning   BackOff             Pod/webapp-6d9f4b-xk2p9    Back-off restarting failed container
+2m          Warning   OOMKilling          Node/worker-node-01        Memory cgroup out of memory: Kill process 8421 (java) score 867
+5m          Warning   Evicted             Pod/worker-7f4b9d-qr3t1    The node was low on resource: memory
+8m          Normal    Pulling             Pod/webapp-6d9f4b-xk2p9    Pulling image "registry.acme.com/webapp:2.1.0"
+10m         Warning   Failed              Pod/webapp-6d9f4b-xk2p9    Failed to pull image "registry.acme.com/webapp:2.1.0": rpc error: ImagePullBackOff
+12m         Warning   Failed              Pod/webapp-6d9f4b-xk2p9    Error: ErrImagePull
+15m         Warning   BackOff             Pod/webapp-6d9f4b-xk2p9    Back-off pulling image "registry.acme.com/webapp:2.1.0"
+17m         Warning   Unhealthy           Pod/webapp-6d9f4b-xk2p9    Liveness probe failed: Get "http://10.0.1.5:8080/healthz": dial tcp 10.0.1.5:8080: connect: connection refused
+20m         Warning   Unhealthy           Pod/webapp-6d9f4b-xk2p9    Readiness probe failed: HTTP probe failed with statuscode: 503
+22m         Warning   CrashLoopBackOff    Pod/webapp-6d9f4b-xk2p9    CrashLoopBackOff: back-off 5m0s restarting failed container=webapp pod=webapp-6d9f4b-xk2p9_default
+25m         Warning   OOMKilled           Pod/webapp-6d9f4b-xk2p9    OOMKilled: container webapp exceeded memory limit
+30m         Normal    Scheduled           Pod/webapp-6d9f4b-new       Successfully assigned default/webapp-6d9f4b-new to worker-node-02
+I0115 10:22:00.001234   1 controller.go:100] Starting deployment controller
+I0115 10:22:00.012345   1 controller.go:125] Watching for deployments
+W0115 10:22:05.001234   1 controller.go:200] Resource quota exceeded for namespace=production: LimitRangeExceeded
+E0115 10:22:10.001234   1 controller.go:300] Failed to create pod webapp-6d9f4b-xk2p9: resource quota exceeded
+E0115 10:22:15.001234   1 reflector.go:138] Failed to list *v1.Pod: Get "https://kube-apiserver:6443/api/v1/pods": dial tcp: lookup kube-apiserver: no such host
+E0115 10:22:20.001234   1 reflector.go:138] connection refused: dial tcp 10.96.0.1:443: connect: connection refused
+W0115 10:22:25.001234   1 pod_gc.go:55] Pod webapp-6d9f4b-xk2p9 pod not ready: containers with unready status: [webapp]
+I0115 10:22:30.001234   1 controller.go:400] Pod webapp-6d9f4b-new is pending...
+W0115 10:22:35.001234   1 controller.go:410] Pod webapp-6d9f4b-new pod pending: Unschedulable node
+2024-01-15T10:22:40.001Z [ERROR] Panic: runtime error: index out of range [5] with length 3
+2024-01-15T10:22:40.002Z goroutine 1 [running]:
+2024-01-15T10:22:40.003Z main.processRequest(...)
+2024-01-15T10:22:40.004Z     /go/src/app/main.go:142 +0x1a4
+2024-01-15T10:22:45.001Z [ERROR] authentication failed: invalid service account token
+2024-01-15T10:22:50.001Z [WARNING] DeprecationWarning: policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, use Pod Security Admission instead
+2024-01-15T10:22:55.001Z [WARNING] container webapp is running as root — set runAsNonRoot: true in securityContext
+2024-01-15T10:23:00.001Z [INFO] Certificate will expire in 7 days: webhook-tls-secret
+2024-01-15T10:23:05.001Z [WARNING] Running as privileged container may expose host to security risks

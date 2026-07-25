@@ -1,0 +1,27 @@
+time="2024-01-15T10:22:00.001Z" level=info msg="Starting Docker daemon" version=24.0.5
+time="2024-01-15T10:22:00.120Z" level=info msg="Docker daemon started" storage-driver=overlay2
+2024-01-15T10:22:05.123456789Z Starting application server...
+2024-01-15T10:22:05.234Z [INFO] Listening on port 8080
+2024-01-15T10:22:06.001Z [INFO] Connected to database
+2024-01-15T10:22:10.002Z [INFO] Serving request GET /api/health
+2024-01-15T10:22:15.000Z [WARNING] Container is running as root (UID 0)
+2024-01-15T10:22:20.001Z [INFO] Serving request GET /api/users
+2024-01-15T10:22:25.500Z [WARNING] Retrying database query attempt 1/3 after connection error
+2024-01-15T10:22:28.001Z [WARNING] Retrying database query attempt 2/3 after connection error
+time="2024-01-15T10:22:30.002Z" level=error msg="container OOM killed" container_id=a1b2c3d4 container_name=myapp signal=9
+2024-01-15T10:22:30.005Z [ERROR] Out of memory: Kill process 1234 (java) score 900 or sacrifice child
+2024-01-15T10:22:30.100Z [FATAL] Application terminated due to memory pressure
+time="2024-01-15T10:22:31.000Z" level=warning msg="Failed to pull image" image="registry.internal/myapp:latest" error="x509: certificate signed by unknown authority"
+2024-01-15T10:22:31.100Z [ERROR] SSL handshake failed: certificate verify failed (SSL: error:14090086)
+time="2024-01-15T10:22:32.001Z" level=error msg="Failed to pull image registry.internal/myapp:latest" error="no basic auth credentials"
+2024-01-15T10:22:32.500Z [INFO] Attempting image pull from insecure registry http://internal-registry:5000
+time="2024-01-15T10:22:33.001Z" level=error msg="container died" container_id=a1b2c3d4 exitCode=137
+time="2024-01-15T10:22:33.500Z" level=warning msg="Restarting container after crash" name=myapp restartCount=3
+2024-01-15T10:22:40.001Z [ERROR] no space left on device — cannot write to /var/lib/docker/overlay2
+time="2024-01-15T10:22:40.002Z" level=error msg="Write failed" path="/var/lib/docker/overlay2/abc123/diff" error="no space left on device"
+time="2024-01-15T10:22:45.001Z" level=info msg="Container started" container_id=e5f6a7b8
+2024-01-15T10:22:50.001Z [WARNING] disk usage at 92% — consider pruning unused images with 'docker system prune'
+2024-01-15T10:22:55.000Z [INFO] Health check passed for container e5f6a7b8
+2024-01-15T10:23:00.001Z [ERROR] connection refused: dial tcp 10.0.0.5:5432: connect: connection refused
+2024-01-15T10:23:00.500Z [ERROR] database connection failed: max retries exceeded
+2024-01-15T10:23:05.001Z [WARNING] DeprecationWarning: 'docker run --link' is deprecated, use Docker networks instead
